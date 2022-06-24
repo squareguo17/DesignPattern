@@ -12,9 +12,11 @@ public class Test {
                 Singleton.getInstance().doSomething();
             }
         };
-        Thread firstThread = new Thread(runnable);
-        Thread secondThread = new Thread(runnable);
-        firstThread.start();
-        secondThread.start();
+
+        // 预期10个线程打印出来的实例对象都是一致的
+        for (int i = 0; i < 10; i++) {
+            Thread thread = new Thread(runnable);
+            thread.start();
+        }
     }
 }
